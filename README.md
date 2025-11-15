@@ -68,7 +68,7 @@ O projeto será desenvolvido utilizando tecnologias modernas para garantir escal
 
 ### Pré-requisitos
 
-A partir da raiz do projeto navegue ate a pasta src/backend
+A partir da raiz do projeto navegue ate a pasta src\backend
 
 ```bash
 cd .\src\backend\
@@ -80,13 +80,15 @@ Atualize os pacotes com o comando:
 npm install
 ```
 
-A partir do .env.example crie um arquivo .env com as variáveis de ambiente do EscalaCanto.
+A partir do `.env.example` crie um arquivo `.env` com as variáveis de ambiente do EscalaCanto.
 
 ```bash
 cp .env.example .env
 ```
 
-Atualize as variáveis de ambiente do arquivo .env conforme o ambiente de desenvolvimento.
+Atualize as variáveis de ambiente do arquivo `.env` conforme o ambiente de desenvolvimento.
+
+---
 
 ### Infrastrutura do Banco de Dados
 
@@ -98,18 +100,37 @@ A partir da raiz do projeto navegue ate a pasta infra/postgres
 cd .\infra\postgres\
 ```
 
-A partir do .env.example crie um arquivo .env com as variáveis de ambiente do banco de dados.
+A partir do `.env.example` crie um arquivo `.env` com as variáveis de ambiente do banco de dados.
 
 ```bash
 cp .env.example .env
 ```
 
-Atualize as variáveis de ambiente do arquivo .env com as credenciais do seu banco de dados.
+Atualize as variáveis de ambiente do arquivo `.env` com as credenciais do seu banco de dados.
 
 Utilize o Docker Compose para levantar o banco de dados PostgreSQL:
 
 ```bash
 docker-compose up -d
+```
+
+---
+
+### ORM Prisma
+
+Sincronize o Prisma com o banco de dados:
+A partir da raiz do projeto navegue ate a pasta src/backend
+
+```bash
+npx prisma migrate dev
+```
+
+### Executando o Servidor de Desenvolvimento
+
+Inicie o servidor de desenvolvimento:
+
+```bash
+npm run dev
 ```
 
 ---
