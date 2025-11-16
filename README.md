@@ -47,6 +47,9 @@ O projeto será desenvolvido utilizando tecnologias modernas para garantir escal
     
 3. Lista de Integrantes
    - Nome do integrante
+   - Documento de identificação
+   - Email
+   - Senha
 
 4. **Relatórios de Execução**
    - O sistema deve gerar relatórios sobre a frequência de execução das músicas.
@@ -177,4 +180,5 @@ Este projeto está sob a licença MIT. Sinta-se livre para utilizá-lo e modific
 ---
 
 Se tiver dúvidas ou sugestões, fique à vontade para abrir uma issue ou entrar em contato. Vamos juntos construir algo incrível! 🎶
+
 
