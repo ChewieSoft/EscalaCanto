@@ -21,7 +21,7 @@ O projeto será desenvolvido utilizando tecnologias modernas para garantir escal
 
 - **Backend**: Node.js com Express
 - **Frontend**: React, Vue.js ou uma aplicação mobile com React Native / Flutter
-- **Banco de Dados**: PostgreSQL, MongoDB ou Firebase
+- **Banco de Dados**: PostgreSQL
 - **Hospedagem**: AWS, Vercel, Firebase Hosting, Heroku ou Self Hosting
 
 ## Requisitos do Sistema
@@ -180,5 +180,6 @@ Este projeto está sob a licença MIT. Sinta-se livre para utilizá-lo e modific
 ---
 
 Se tiver dúvidas ou sugestões, fique à vontade para abrir uma issue ou entrar em contato. Vamos juntos construir algo incrível! 🎶
+
 
 
