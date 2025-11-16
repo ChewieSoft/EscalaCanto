@@ -33,6 +33,9 @@ O projeto será desenvolvido utilizando tecnologias modernas para garantir escal
      - Nome da música
      - Versão (quem canta)
      - Tonalidade
+     - Tags
+     - Letras
+     - bpm das músicas
      - Cifra
 
 2. **Escala de Culto**
@@ -41,17 +44,20 @@ O projeto será desenvolvido utilizando tecnologias modernas para garantir escal
      - Quem ministrará
      - Quem cantará
      - Quem tocará (músicos)
+    
+3. Lista de Integrantes
+   - Nome do integrante
 
-3. **Relatórios de Execução**
+4. **Relatórios de Execução**
    - O sistema deve gerar relatórios sobre a frequência de execução das músicas.
 
-4. **Compartilhamento**
+5. **Compartilhamento**
    - O usuário poderá enviar escalas e listas de músicas via WhatsApp para os envolvidos.
 
-5. **Busca de Músicas**
+6. **Busca de Músicas**
    - Um sistema de pesquisa facilitará a busca por músicas na base de dados.
 
-6. **Histórico de Escalas**
+7. **Histórico de Escalas**
    - O sistema deve armazenar e permitir a consulta de escalas passadas.
 
 ### Requisitos Não Funcionais
@@ -171,3 +177,4 @@ Este projeto está sob a licença MIT. Sinta-se livre para utilizá-lo e modific
 ---
 
 Se tiver dúvidas ou sugestões, fique à vontade para abrir uma issue ou entrar em contato. Vamos juntos construir algo incrível! 🎶
+
