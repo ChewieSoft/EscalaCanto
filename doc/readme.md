@@ -17,6 +17,9 @@
     - [2025/Mar/15](#2025mar15)
       - [Anotações do Bill](#anotações-do-bill)
       - [Anotações do Gabriel](#anotações-do-gabriel)
+  - [Modelo](#modelo-1)
+    - [Ver4](#ver4)
+    - [Ver5](#ver5)
   - [🔗 Convenção de Nomenclatura para Chaves Estrangeiras](#-convenção-de-nomenclatura-para-chaves-estrangeiras)
     - [📌 Relações 1:N → `fk_atributo`](#-relações-1n--fk_atributo)
     - [🔁 Relações N:N (Tabelas Associativas / Pivot) → `atributo_id`](#-relações-nn-tabelas-associativas--pivot--atributo_id)
@@ -74,7 +77,7 @@ Ex. versão estudio,e a versão ao vivo ter outra roupagem
 
 ### 2025/Mar/15
 
-Juntamos Jorge Ferrari, Bill e Gabriel, para pensarmos nos atributos do modelo. 
+Juntamos Jorge Ferrari, Bill e Gabriel, para pensarmos nos atributos do modelo.
 
 #### Anotações do Bill
 
@@ -142,6 +145,8 @@ EscalaCuto
 - Tipo evento ✅
 ```
 
+## Modelo
+
 - Modelo antes das alterações nas Entidades
 
 ![DER](./modelo_entidade_relacionamento.drawio.svg)
@@ -155,7 +160,13 @@ EscalaCuto
 
 - Modelos com os atributos definidos
 
+### Ver4
+
 ![DER](./assets/modelo_entidade_relacionamento-MER_ver4.drawio.svg)
+
+### Ver5
+
+![DER](./assets/modelo_entidade_relacionamento-MER_ver5.drawio.svg)
 
 ---
 

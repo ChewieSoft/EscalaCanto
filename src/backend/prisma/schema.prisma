@@ -1,6 +1,5 @@
 generator client {
-  provider = "prisma-client"
-  output   = "./prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -9,21 +8,25 @@ datasource db {
 }
 
 model Artistas {
-  id      String             @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  nome    String             @unique(map: "artistas_nome_unico")
-  musicas Artistas_Musicas[]
+  id         String             @id @default(uuid()) @db.Uuid
+  nome       String             @unique(map: "artistas_nome_unico")
+  created_at DateTime           @default(now()) @db.Timestamp(6)
+  updated_at DateTime           @updatedAt @db.Timestamp(6)
+  musicas    Artistas_Musicas[]
 
   @@map("artistas")
 }
 
 model Artistas_Musicas {
-  id                               String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  id                               String   @id @default(uuid()) @db.Uuid
   artista_id                       String   @db.Uuid
   musica_id                        String   @db.Uuid
   bpm                              Int?
   cifras                           String?
   lyrics                           String?
   link_versao                      String?
+  created_at                       DateTime @default(now()) @db.Timestamp(6)
+  updated_at                       DateTime @updatedAt @db.Timestamp(6)
   artistas_musicas_artista_id_fkey Artistas @relation(fields: [artista_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
   artistas_musicas_musica_id_fkey  Musicas  @relation(fields: [musica_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
@@ -31,50 +34,60 @@ model Artistas_Musicas {
 }
 
 model Eventos {
-  id                          String            @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  data                        DateTime          @db.Date
-  fk_tipo_evento              String            @db.Uuid
+  id                          String                @id @default(uuid()) @db.Uuid
+  data                        DateTime              @db.Date
+  fk_tipo_evento              String                @db.Uuid
   descricao                   String
-  eventos_fk_tipo_evento_fkey Tipos_Eventos     @relation(fields: [fk_tipo_evento], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  created_at                  DateTime              @default(now()) @db.Timestamp(6)
+  updated_at                  DateTime              @updatedAt @db.Timestamp(6)
+  eventos_fk_tipo_evento_fkey Tipos_Eventos         @relation(fields: [fk_tipo_evento], references: [id], onDelete: Cascade, onUpdate: NoAction)
   Eventos_Musicas             Eventos_Musicas[]
-  Eventos_Musicos             Eventos_Musicos[]
+  Eventos_Integrantes         Eventos_Integrantes[]
 
   @@map("eventos")
 }
 
 model Eventos_Musicas {
-  id                              String  @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  evento_id                       String  @db.Uuid
-  musicas_id                      String  @db.Uuid
-  eventos_musicas_evento_id_fkey  Eventos @relation(fields: [evento_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  eventos_musicas_musicas_id_fkey Musicas @relation(fields: [musicas_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  id                              String   @id @default(uuid()) @db.Uuid
+  evento_id                       String   @db.Uuid
+  musicas_id                      String   @db.Uuid
+  created_at                      DateTime @default(now()) @db.Timestamp(6)
+  updated_at                      DateTime @updatedAt @db.Timestamp(6)
+  eventos_musicas_evento_id_fkey  Eventos  @relation(fields: [evento_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  eventos_musicas_musicas_id_fkey Musicas  @relation(fields: [musicas_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@map("eventos_musicas")
 }
 
-model Eventos_Musicos {
-  id                             String  @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  evento_id                      String  @db.Uuid
-  musico_id                      String  @db.Uuid
-  eventos_musicos_evento_id_fkey Eventos @relation(fields: [evento_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  eventos_musicos_musico_id_fkey Musicos @relation(fields: [musico_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+model Eventos_Integrantes {
+  id                                 String      @id @default(uuid()) @db.Uuid
+  evento_id                          String      @db.Uuid
+  musico_id                          String      @db.Uuid
+  created_at                         DateTime    @default(now()) @db.Timestamp(6)
+  updated_at                         DateTime    @updatedAt @db.Timestamp(6)
+  eventos_integrantes_evento_id_fkey Eventos     @relation(fields: [evento_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  eventos_integrantes_musico_id_fkey Integrantes @relation(fields: [musico_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
-  @@map("eventos_musicos")
+  @@map("eventos_integrantes")
 }
 
 model Funcoes {
-  id              String            @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  nome            String
-  Musicas_Funcoes Musicas_Funcoes[]
-  Musicos_Funcoes Musicos_Funcoes[]
+  id                  String                @id @default(uuid()) @db.Uuid
+  nome                String
+  created_at          DateTime              @default(now()) @db.Timestamp(6)
+  updated_at          DateTime              @updatedAt @db.Timestamp(6)
+  Musicas_Funcoes     Musicas_Funcoes[]
+  Integrantes_Funcoes Integrantes_Funcoes[]
 
   @@map("funcoes")
 }
 
 model Musicas {
-  id                         String             @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  id                         String             @id @default(uuid()) @db.Uuid
   nome                       String
   fk_tonalidade              String             @db.Uuid
+  created_at                 DateTime           @default(now()) @db.Timestamp(6)
+  updated_at                 DateTime           @updatedAt @db.Timestamp(6)
   Artistas_Musicas           Artistas_Musicas[]
   Eventos_Musicas            Eventos_Musicas[]
   musicas_fk_tonalidade_fkey Tonalidades        @relation(fields: [fk_tonalidade], references: [id], onDelete: Cascade, onUpdate: NoAction)
@@ -84,47 +97,59 @@ model Musicas {
 }
 
 model Musicas_Funcoes {
-  id                             String  @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  musica_id                      String  @db.Uuid
-  funcao_id                      String  @db.Uuid
-  musicas_funcoes_funcao_id_fkey Funcoes @relation(fields: [funcao_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  musicas_funcoes_musica_id_fkey Musicas @relation(fields: [musica_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  id                             String   @id @default(uuid()) @db.Uuid
+  musica_id                      String   @db.Uuid
+  funcao_id                      String   @db.Uuid
+  created_at                     DateTime @default(now()) @db.Timestamp(6)
+  updated_at                     DateTime @updatedAt @db.Timestamp(6)
+  musicas_funcoes_funcao_id_fkey Funcoes  @relation(fields: [funcao_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  musicas_funcoes_musica_id_fkey Musicas  @relation(fields: [musica_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@map("musicas_funcoes")
 }
 
-model Musicos {
-  id              String            @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  nome            String
-  doc_id          String            @unique
-  Eventos_Musicos Eventos_Musicos[]
-  Musicos_Funcoes Musicos_Funcoes[]
+model Integrantes {
+  id                  String                @id @default(uuid()) @db.Uuid
+  nome                String
+  doc_id              String                @unique
+  email               String                @unique @db.VarChar(255)
+  senha               String                @db.VarChar(255)
+  created_at          DateTime              @default(now()) @db.Timestamp(6)
+  updated_at          DateTime              @updatedAt @db.Timestamp(6)
+  Eventos_Integrantes Eventos_Integrantes[]
+  Integrantes_Funcoes Integrantes_Funcoes[]
 
-  @@map("musicos")
+  @@map("integrantes")
 }
 
-model Musicos_Funcoes {
-  id                             String  @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  musico_id                      String  @db.Uuid
-  funcao_id                      String  @db.Uuid
-  musicos_funcoes_funcao_id_fkey Funcoes @relation(fields: [funcao_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  musicos_funcoes_musico_id_fkey Musicos @relation(fields: [musico_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+model Integrantes_Funcoes {
+  id                                 String      @id @default(uuid()) @db.Uuid
+  musico_id                          String      @db.Uuid
+  funcao_id                          String      @db.Uuid
+  created_at                         DateTime    @default(now()) @db.Timestamp(6)
+  updated_at                         DateTime    @updatedAt @db.Timestamp(6)
+  integrantes_funcoes_funcao_id_fkey Funcoes     @relation(fields: [funcao_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  integrantes_funcoes_musico_id_fkey Integrantes @relation(fields: [musico_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
-  @@map("musicos_funcoes")
+  @@map("integrantes_funcoes")
 }
 
 model Tipos_Eventos {
-  id      String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  nome    String
-  Eventos Eventos[]
+  id         String    @id @default(uuid()) @db.Uuid
+  nome       String    @unique(map: "tipos_eventos_nome_unico")
+  created_at DateTime  @default(now()) @db.Timestamp(6)
+  updated_at DateTime  @updatedAt @db.Timestamp(6)
+  Eventos    Eventos[]
 
   @@map("tipos_eventos")
 }
 
 model Tonalidades {
-  id      String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  tom     String
-  Musicas Musicas[]
+  id         String    @id @default(uuid()) @db.Uuid
+  tom        String
+  created_at DateTime  @default(now()) @db.Timestamp(6)
+  updated_at DateTime  @updatedAt @db.Timestamp(6)
+  Musicas    Musicas[]
 
   @@map("tonalidades")
 }

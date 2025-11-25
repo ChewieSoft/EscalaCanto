@@ -21,7 +21,7 @@ O projeto será desenvolvido utilizando tecnologias modernas para garantir escal
 
 - **Backend**: Node.js com Express
 - **Frontend**: React, Vue.js ou uma aplicação mobile com React Native / Flutter
-- **Banco de Dados**: PostgreSQL, MongoDB ou Firebase
+- **Banco de Dados**: PostgreSQL
 - **Hospedagem**: AWS, Vercel, Firebase Hosting, Heroku ou Self Hosting
 
 ## Requisitos do Sistema
@@ -33,6 +33,9 @@ O projeto será desenvolvido utilizando tecnologias modernas para garantir escal
      - Nome da música
      - Versão (quem canta)
      - Tonalidade
+     - Tags
+     - Letras
+     - bpm das músicas
      - Cifra
 
 2. **Escala de Culto**
@@ -41,17 +44,23 @@ O projeto será desenvolvido utilizando tecnologias modernas para garantir escal
      - Quem ministrará
      - Quem cantará
      - Quem tocará (músicos)
+    
+3. Lista de Integrantes
+   - Nome do integrante
+   - Documento de identificação
+   - Email
+   - Senha
 
-3. **Relatórios de Execução**
+4. **Relatórios de Execução**
    - O sistema deve gerar relatórios sobre a frequência de execução das músicas.
 
-4. **Compartilhamento**
+5. **Compartilhamento**
    - O usuário poderá enviar escalas e listas de músicas via WhatsApp para os envolvidos.
 
-5. **Busca de Músicas**
+6. **Busca de Músicas**
    - Um sistema de pesquisa facilitará a busca por músicas na base de dados.
 
-6. **Histórico de Escalas**
+7. **Histórico de Escalas**
    - O sistema deve armazenar e permitir a consulta de escalas passadas.
 
 ### Requisitos Não Funcionais
@@ -64,11 +73,88 @@ O projeto será desenvolvido utilizando tecnologias modernas para garantir escal
 
 ---
 
+## Ambiente de Desenvolvimento
+
+### Pré-requisitos
+
+A partir da raiz do projeto navegue ate a pasta src\backend
+
+```bash
+cd .\src\backend\
+```
+
+Atualize os pacotes com o comando:
+
+```bash
+npm install
+```
+
+A partir do `.env.example` crie um arquivo `.env` com as variáveis de ambiente do EscalaCanto.
+
+```bash
+cp .env.example .env
+```
+
+Atualize as variáveis de ambiente do arquivo `.env` conforme o ambiente de desenvolvimento.
+
+---
+
+### Infrastrutura do Banco de Dados
+
+Levante a infraestrutura do banco de dados.
+
+A partir da raiz do projeto navegue ate a pasta infra/postgres
+
+```bash
+cd .\infra\postgres\
+```
+
+A partir do `.env.example` crie um arquivo `.env` com as variáveis de ambiente do banco de dados.
+
+```bash
+cp .env.example .env
+```
+
+Atualize as variáveis de ambiente do arquivo `.env` com as credenciais do seu banco de dados.
+
+Utilize o Docker Compose para levantar o banco de dados PostgreSQL:
+
+```bash
+docker-compose up -d
+```
+
+---
+
+### ORM Prisma
+
+Sincronize o Prisma com o banco de dados:
+A partir da raiz do projeto navegue ate a pasta src/backend
+
+```bash
+npx prisma migrate dev
+```
+
+### Executando o Servidor de Desenvolvimento
+
+Inicie o servidor de desenvolvimento:
+
+```bash
+npm run dev
+```
+
+---
+
+## Entrevistas
+
+- [Entrevistas com Usuários](./entrevistas/README.md/entrevistas.md)
+
 ## DevOps
 
 - [Infra](./infra/README.md)
 
----
+## Banco de Dados
+
+- [Modelagem](./doc/readme.md)
 
 ## Como Contribuir
 
@@ -94,3 +180,6 @@ Este projeto está sob a licença MIT. Sinta-se livre para utilizá-lo e modific
 ---
 
 Se tiver dúvidas ou sugestões, fique à vontade para abrir uma issue ou entrar em contato. Vamos juntos construir algo incrível! 🎶
+
+
+
